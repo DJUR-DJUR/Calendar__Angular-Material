@@ -1,7 +1,7 @@
 <h1>ORGANIZER</h1>
 <div class="container">
   <div class="calendar">
-    <mat-calendar [(selected)]="selectedDate"></mat-calendar>
+    <mat-calendar [(selected)]="selectedDate" (selectedChange)="getSelectedChange($event)"></mat-calendar>
   </div>
   <div class="organizer">
     <div class="sected-date">
@@ -9,7 +9,7 @@
       <div> <h2>{{selectedDate | date: 'longDate'}}</h2>
     </div>
     <hr>
-    <div cdkDropListGroup class="organizer-list" >
+    <div cdkDropListGroup class="organizer-list">
       <div class="example-container">
         <h2>To do</h2>
         <div
@@ -18,7 +18,7 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)">
           <div *ngIf="todos.length; else noTodos">
-            <div class="example-box" *ngFor="let item of todos" cdkDrag>{{item}}</div>
+            <div class="example-box" *ngFor="let item of todos" cdkDrag>{{item.title}}</div>
           </div>
           <ng-template #noTodos>
             <div class="example-box">
@@ -26,10 +26,7 @@
             </div>
           </ng-template>
         </div>
-        <form (ngSubmit)="submit()"  [formGroup]="form">
-          <input type="text" formControlName="title">
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Add</button>
-        </form>
+
       </div>
 
       <div class="example-container">
@@ -40,8 +37,9 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)">
           <div *ngIf="dones.length; else noDones">
-            <div class="example-box" *ngFor="let item of dones" cdkDrag >{{item}}
-              <button class="btn btn-primary" (click)="delete(item)">Delete</button>
+            <div class="example-box" *ngFor="let item of dones" cdkDrag >
+              <div>{{item.title}}</div>
+              <button class="btn btn-primary" (click)="remove(item)">Delete</button>
             </div>
           </div>
           <ng-template #noDones>
@@ -52,6 +50,15 @@
         </div>
       </div>
     </div>
+    <form (ngSubmit)="submit()"  [formGroup]="form">
+      <input type="text" formControlName="title">
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Add</button>
+    </form>
+    <ng-template #loader>
+      <div class="loader">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </ng-template>
   </div>
 </div>
 
