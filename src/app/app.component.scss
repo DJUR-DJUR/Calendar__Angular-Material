@@ -22,6 +22,22 @@
   font-size: 14px;
   }
 
+  .calendar {
+    width: 100%;
+  }
+
+  .organizer {
+    width: 100%;
+
+    p {
+      width: 100%;
+    }
+  }
+
+  .btn-primary {
+  margin-top: 1rem;
+}
+
 }
 
 @media screen and (min-width: 520px) {
@@ -46,4 +62,18 @@
     font-size: 14px;
   }
 
+  .calendar {
+    width: 50%;
+    margin: 2rem;
   }
+
+  .organizer {
+    margin: 2rem;
+    width: 50%;
+
+    p {
+      width: 100%;
+    }
+  }
+
+}

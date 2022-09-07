@@ -149,26 +149,11 @@ input {
 }
 
 
-
-.calendar {
-  width: 50%;
-  margin: 2rem;
-}
-
-.organizer {
-  margin: 2rem;
-  width: 50%;
-
-  p {
-    width: 100%;
-  }
-}
-
 .organizer-list {
   display: flex;
     justify-content: space-around;
     align-items: baseline;
-    margin-top: 2rem;
+    margin: 2rem;
 }
 
 h1 {
