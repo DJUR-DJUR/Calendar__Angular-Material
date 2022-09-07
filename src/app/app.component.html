@@ -9,7 +9,7 @@
       <div> <h2>{{selectedDate | date: 'longDate'}}</h2>
     </div>
     <hr>
-    <div cdkDropListGroup class="organizer-list">
+    <div cdkDropListGroup class="organizer-list" *ngIf="!loader; else spiner">
       <div class="example-container">
         <h2>To do</h2>
         <div
@@ -26,16 +26,15 @@
             </div>
           </ng-template>
         </div>
-
       </div>
-
       <div class="example-container">
         <h2>Done</h2>
         <div
           cdkDropList
           [cdkDropListData]="dones"
           class="example-list"
-          (cdkDropListDropped)="drop($event)">
+          (cdkDropListDropped)="drop($event)"
+          >
           <div *ngIf="dones.length; else noDones">
             <div class="example-box" *ngFor="let item of dones" cdkDrag >
               <div>{{item.title}}</div>
@@ -54,7 +53,7 @@
       <input type="text" formControlName="title">
       <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Add</button>
     </form>
-    <ng-template #loader>
+    <ng-template #spiner>
       <div class="loader">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       </div>

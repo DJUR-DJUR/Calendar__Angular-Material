@@ -38,7 +38,6 @@ export class TaskService {
     }))
   }
 
-
   remove(task: Task): Observable<void> {
     return this.http.delete<void>(`${TaskService.url}/${task.date}/${task.id}.json`);
   }
